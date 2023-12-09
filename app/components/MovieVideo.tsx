@@ -1,5 +1,5 @@
-import { Button } from '@/components/ui/button'
 import prisma from '../utils/db'
+import MovieButtons from './MovieButtons'
 
 async function getData() {
 	const data = await prisma.movie.findFirst({
@@ -12,6 +12,7 @@ async function getData() {
 			duration: true,
 			id: true,
 			age: true,
+			youtubeString: true,
 		},
 	})
 	return data
@@ -21,14 +22,14 @@ export default async function MovieVideo() {
 	const data = await getData()
 
 	return (
-		<div className='h-[55vh] lg:h-[60vh] w-full flex justify-start items-center'>
+		<div className='h-[50vh] lg:h-[50vh] w-full flex justify-start items-center'>
 			<video
 				poster={data?.imageString}
 				autoPlay
 				muted
 				loop
 				src={data?.videoSource}
-				className='w-full absolute top-0 left-0 mt-0 h-[60vh] object-cover -z-10 brightness-[60%]'
+				className='w-full absolute top-0 left-0 mt-0 h-[55vh] object-cover -z-10 brightness-[60%]'
 			></video>
 
 			<div className='absolute w-[90%] lg:w-[40%] mx-auto'>
@@ -37,8 +38,16 @@ export default async function MovieVideo() {
 				</h1>
 				<p className='text-white text-lg mt-5 line-clamp-3'>{data?.overview}</p>
 				<div className='flex gap-x-3 mt-4'>
-					<Button>See more</Button>
-					<Button>Learn more</Button>
+					<MovieButtons
+						age={data?.age as number}
+						duration={data?.duration as number}
+						id={data?.id as number}
+						overview={data?.overview as string}
+						release={data?.release as number}
+						title={data?.title as string}
+						youtubeUrl={data?.youtubeString as string}
+						key={data?.id}
+					/>
 				</div>
 			</div>
 		</div>
