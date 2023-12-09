@@ -13,7 +13,6 @@ interface linkProps {
 
 const links: linkProps[] = [
 	{ name: 'Home', href: '/home' },
-	{ name: 'Tv Shows', href: '/home/shows' },
 	{ name: 'Movies', href: '/home/movies' },
 	{ name: 'Series', href: '/home/series' },
 	{ name: 'Films', href: '/home/films' },
