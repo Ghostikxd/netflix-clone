@@ -24,9 +24,9 @@ export default function Navbar() {
 	const pathName = usePathname()
 
 	return (
-		<div className='w-full  mx-auto flex justify-between items-center px-5 sm:px-6 lg:px-8 py-5'>
+		<div className='w-full max-w-7xl mx-auto flex justify-between items-center px-5 sm:px-6 lg:px-8 py-5'>
 			<div className='flex items-center'>
-				<Link href='/home' className='w-36'>
+				<Link href='/home' className='w-40'>
 					<Image src={Logo} alt='netflix logo' priority />
 				</Link>
 				<ul className='lg:flex gap-x-4 ml-10 hidden'>
@@ -45,7 +45,7 @@ export default function Navbar() {
 								<li>
 									<Link
 										href={link.href}
-										className='text-gray-300 font-normal text-sm hover:text-white'
+										className='text-gray-300 font-normal text-base hover:text-white'
 									>
 										{link.name}
 									</Link>
